@@ -282,7 +282,7 @@ class GLiNER(nn.Module, PyTorchModelHubMixin):
         )
 
         # INICIO SOLUCION TEMPORAL
-        outputs = [ [pred for pred in output if pred[0] < len(text.split()) and pred[1] < len(text.split())] for text, output in zip(texts, outputs)]
+        outputs = [ [pred for pred in output if pred[0] < len(token) and pred[1] < len(token)] for token, output in zip(raw_batch["tokens"], outputs)]
         # FIN SOLUCION TEMPORAL
 
         all_entities = []
