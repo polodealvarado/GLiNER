@@ -281,6 +281,10 @@ class GLiNER(nn.Module, PyTorchModelHubMixin):
             multi_label=multi_label,
         )
 
+        # INICIO SOLUCION TEMPORAL
+        outputs = [ [pred for pred in output if pred[0] < len(text.split()) and pred[1] < len(text.split())] for text, output in zip(texts, outputs)]
+        # FIN SOLUCION TEMPORAL
+
         all_entities = []
         for i, output in enumerate(outputs):
             start_token_idx_to_text_idx = raw_batch["all_start_token_idx_to_text_idx"][
